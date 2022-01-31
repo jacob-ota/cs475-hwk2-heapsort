@@ -83,6 +83,7 @@ struct Employee *getMinPaidEmployee(struct Employee *A, int n)
 void swap(struct Employee *e1, struct Employee *e2)
 {
 	//TODO 
+	printf("Fixme");
 }
 
 /**
