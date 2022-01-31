@@ -29,9 +29,5 @@ int main()
 		}
 		printf("\n");
 	}
-
-	for(int i = 0; i < enteredEmployees; ++i) {
-		printf("%s makes %d\n", emp[i].name, emp[i].salary);
-	}
 	return 0;
 }

@@ -55,12 +55,30 @@ void heapify(struct Employee *A, int i, int n)
 	//TODO - get index of left child of element i
 	//TODO - get index of right child of element i
 
+	int left_child = 2 * (i + 1) - 1;
+	int right_child = 2 * (i + 1);
+
 	//TODO - determine which child has a smaller salary. We'll call the index of this
 	//		element: "smaller"
-
 	//TODO - recursively check if the salary at A[i] > the salary at A[smaller]. If it is, swap the two.
 	//			Then recursively heapify A[smaller].
 	//TODO - Continue recursion as long as i is within range AND either right_child and left_child are still within range.
+	while (i < n - 1 || left_child < n - 1 || right_child < n - 1) {
+		int smaller;
+		if(A[left_child].salary < A[right_child].salary) {
+			smaller = left_child;
+		}
+		else {
+			smaller = right_child;
+		}
+		if(A[i].salary > A[smaller].salary) {
+			swap(&A[i], &A[smaller]);
+			heapify(A, smaller, n);
+		}
+		else {
+			break;
+		}
+	}
 }
 
 /**
@@ -69,10 +87,10 @@ void heapify(struct Employee *A, int i, int n)
  * @param	*A	Pointer to the list of employees
  * @param	n	Size of the list
  */
-struct Employee *getMinPaidEmployee(struct Employee *A, int n)
-{
-	//TODO
-}
+// struct Employee *getMinPaidEmployee(struct Employee *A, int n)
+// {
+// 	//TODO
+// }
 
 
 /**
@@ -83,7 +101,9 @@ struct Employee *getMinPaidEmployee(struct Employee *A, int n)
 void swap(struct Employee *e1, struct Employee *e2)
 {
 	//TODO 
-	printf("Fixme");
+	struct Employee temp = *e1;
+	*e1 = *e2;
+	*e2 = temp;
 }
 
 /**
@@ -94,4 +114,7 @@ void swap(struct Employee *e1, struct Employee *e2)
 void printList(struct Employee *A, int n)
 {
 	//TODO
+	for (int i = 0; i < n; ++i) {
+		printf("[id = %s sal = %d] ", A[i].name, A[i].salary);
+	}
 }
