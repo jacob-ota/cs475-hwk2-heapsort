@@ -1,1 +1,2 @@
 # cs475-hwk2-heapsort
+In this heapsort, the user enters in the name and salary of a list of employees and from there it sorts the employees from the lowest earning salary to the highest when ran through the heapify function (min heap). After it is sorted in this way, it swaps the first and last element and runs the heapify function to order the elements between 0 and n-2 since the spot at n-1 should be in its correct spot. And from there it shows the the highest earning employees to the lowest in the order.
