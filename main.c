@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "employee.h"
 #include "heap.h"
 
@@ -9,6 +10,8 @@ int main()
 	struct Employee emp[MAX_EMPLOYEES];
 	char cont;
 	int enteredEmployees;
+	bool incorrectInput = true;
+	bool keepGoing = true;
 
 	for (int i = 0; i < MAX_EMPLOYEES; ++i) {
 		//get the names and salary
@@ -20,10 +23,23 @@ int main()
 		++enteredEmployees;
 		//unless it reaches the max num keep query for another employee
 		if(i < (MAX_EMPLOYEES - 1)) {
-			printf("Enter another user ('y' / 'n')? ");
-			scanf(" %c", &cont);
-			//break if user enters 'n'
-			if(cont == 'n') {
+			incorrectInput = true;
+			while(incorrectInput) {
+				printf("Enter another user ('y' / 'n')? ");
+				scanf(" %c", &cont);
+				//break if user enters 'n'
+				if(cont == 'y') {
+					incorrectInput = false;
+				}
+				else if(cont == 'n') {
+					incorrectInput = false;
+					keepGoing = false;
+				}
+				else {
+					printf("Invalid input! Try again!\n");
+				}
+			}
+			if(!keepGoing) {
 				break;
 			}
 		}
