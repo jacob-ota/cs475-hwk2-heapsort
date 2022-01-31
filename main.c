@@ -2,7 +2,7 @@
 #include "employee.h"
 #include "heap.h"
 
-#define MAX_EMPLOYEES 15
+#define MAX_EMPLOYEES 5
 
 int main()
 { 
@@ -29,7 +29,7 @@ int main()
 		printf("\n");
 	}
 	printf("\n");
-	buildHeap(emp, enteredEmployees);
+	heapSort(emp, enteredEmployees);
 	printList(emp, enteredEmployees);
 	printf("\n");
 	return 0;

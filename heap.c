@@ -27,9 +27,9 @@ void heapSort(struct Employee *A, int n)
 		//TODO - Heapify the elements from A[0] up to A[n-1] (which leaves the newly sorted element alone)
 	while (n > 0) {
 		//swap A[n-1] with A[0]
-		swap(&A[n - 1], &A[0]);
-		// //heapify the element
-		// heapify(A, (n - 1), n);
+		swap(&A[0], &A[n - 1]);
+		//heapify the elements
+		heapify(A, 0, (n - 1));
 		//drecrement n
 		--n;
 	}
