@@ -19,12 +19,20 @@
 void heapSort(struct Employee *A, int n)
 {
 	//TODO - BuildHeap on the list
-	
+	buildHeap(A, n);
 	//TODO - while n > 0:
 		//TODO - swap A[n-1] with A[0], since A[0] is the smallest number.
 		//TODO - A[n-1] now sorted in place!
 		//TODO - So decrement n
 		//TODO - Heapify the elements from A[0] up to A[n-1] (which leaves the newly sorted element alone)
+	while (n > 0) {
+		//swap A[n-1] with A[0]
+		swap(&A[n - 1], &A[0]);
+		// //heapify the element
+		// heapify(A, (n - 1), n);
+		//drecrement n
+		--n;
+	}
 }
 
 
@@ -39,6 +47,13 @@ void heapSort(struct Employee *A, int n)
 void buildHeap(struct Employee *A, int n)
 {
 	//TODO - heapify() every element from A[n/2] to A[0]
+	int idx = n / 2;
+	while(idx >= 0) {
+		//heapify the idx
+		heapify(A, idx, n);
+		//work down to 0
+		--idx;
+	}
 }
 
 
@@ -63,13 +78,21 @@ void heapify(struct Employee *A, int i, int n)
 	//TODO - recursively check if the salary at A[i] > the salary at A[smaller]. If it is, swap the two.
 	//			Then recursively heapify A[smaller].
 	//TODO - Continue recursion as long as i is within range AND either right_child and left_child are still within range.
-	while (i < n - 1 || left_child < n - 1 || right_child < n - 1) {
+	while (i < n - 1) {
 		int smaller;
-		if(A[left_child].salary < A[right_child].salary) {
+		if(left_child <= (n - 1) && right_child <= (n - 1)) {
+			if(A[left_child].salary < A[right_child].salary) {
+				smaller = left_child;
+			}
+			else {
+				smaller = right_child;
+			}
+		}
+		else if (left_child <= (n - 1)) {
 			smaller = left_child;
 		}
-		else {
-			smaller = right_child;
+		else if(left_child > (n - 1) && right_child > (n - 1)) {
+			break;
 		}
 		if(A[i].salary > A[smaller].salary) {
 			swap(&A[i], &A[smaller]);
@@ -115,6 +138,6 @@ void printList(struct Employee *A, int n)
 {
 	//TODO
 	for (int i = 0; i < n; ++i) {
-		printf("[id = %s sal = %d] ", A[i].name, A[i].salary);
+		printf("[id=%s sal=%d] ", A[i].name, A[i].salary);
 	}
 }
