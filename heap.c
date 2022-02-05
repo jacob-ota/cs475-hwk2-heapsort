@@ -110,10 +110,11 @@ void heapify(struct Employee *A, int i, int n)
  * @param	*A	Pointer to the list of employees
  * @param	n	Size of the list
  */
-// struct Employee *getMinPaidEmployee(struct Employee *A, int n)
-// {
-// 	//TODO
-// }
+struct Employee *getMinPaidEmployee(struct Employee *A, int n)
+{
+	//TODO
+	return &A[0];
+}
 
 
 /**
